@@ -1,23 +1,105 @@
 package com.hospital.hospitalsystem.model;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+//Utility Classes
+import com.hospital.hospitalsystem.service.LoginService;
+import com.hospital.hospitalsystem.service.ValidationService;
+
 public class User {
     private static int id;
     private String name;
+    private String email;
     private int age;
     private String gender;
     private String role;
 
-    public User(String name, int age, String gender, String role)
+    private static final Scanner scanner = new Scanner(System.in);
+    private static int idSearch; //For Find by user ID
+
+    public User(String name, String email, int age, String gender, String role)
     {
         id += 1;
         this.name = name;
+        this.email = email;
         this.age = age;
         this.gender = gender;
         this.role = role;
     }
 
+    //Add patient - Add patient with NAME, AGE, GENDER, ROLE
+    public static void register()
+    {
+        //Enter name
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        if(!ValidationService.isValidName(name)){
+            System.out.println("Invalid name, name must be within 2-32 characters and must not contain numbers.");
+            return;
+        }
+
+        //Enter email
+        System.out.print("Enter email: ");
+        String email = scanner.nextLine();
+        if(!ValidationService.isValidEmail(email)){
+            System.out.println("Invalid email.");
+            return;
+        }
+
+        //Enter age
+        System.out.print("Enter age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        if(!ValidationService.isValidAge(age)){
+            System.out.println("Invalid age.");
+            return;
+        }
+
+        //Enter gender
+        System.out.print("Enter gender (male/female): ");
+        String gender = scanner.nextLine();
+        if(!ValidationService.isValidGender(gender)){
+            System.out.println("Invalid gender, please input one of the two options displayed.");
+            return;
+        }
+
+        //Enter role
+        System.out.print("Enter role (patient/doctor): ");
+        String role = scanner.nextLine();
+        if(!ValidationService.isValidRole(role)){
+            System.out.println("Invalid role, please input one of the two options displayed.");
+            return;
+        }
+
+        User user = new User(name, email, age, gender, role);
+        LoginService.registerUser(user);
+        //System.out.println(user.toString());
+    }
+
+    public static void findUserByID()
+    {
+        System.out.print("Enter an ID to find a user: ");
+        try {
+            idSearch = scanner.nextInt();
+        }
+        catch (InputMismatchException e)
+        {
+            System.out.println("Error: Please insert a numerical value");
+        }
+        LoginService.listUserByID(idSearch);
+    }
+
+    public int getID() {
+        return id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public String getEmail(){
+        return email;
     }
 
     public int getAge() {
@@ -36,7 +118,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
-                ", age=" + age +
+                ", email=" + email + '\'' +
+                ", age=" + age + '\'' +
                 ", gender='" + gender + '\'' +
                 ", role='" + role + '\'' +
                 '}';
