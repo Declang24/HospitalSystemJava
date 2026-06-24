@@ -38,5 +38,4 @@ public class ValidationService {
         role = role.toLowerCase();
         return role.equals("patient") || role.equals("doctor");
     }
-
 }

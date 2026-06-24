@@ -1,6 +1,7 @@
 package com.hospital.hospitalsystem;
 
 import com.hospital.hospitalsystem.model.User;
+import com.hospital.hospitalsystem.service.DatabaseOperationsService;
 import com.hospital.hospitalsystem.service.LoginService;
 
 import java.util.Scanner;
@@ -17,7 +18,8 @@ public class HospitalManager {
             System.out.println("3. View all Patients");
             System.out.println("4. View all doctors");
             System.out.println("5. View By ID");
-            System.out.println("6. Exit");
+            System.out.println("6. Delete by ID");
+            System.out.println("7. Exit");
 
             String choice = kb.nextLine();
 
@@ -28,21 +30,25 @@ public class HospitalManager {
                     break;
                 case "2":
                     System.out.println("View all users selected");
-                    LoginService.ListAllUsers();
+                    DatabaseOperationsService.ListAllUsers();
                     break;
                 case "3":
                     System.out.println("Listing all patients...");
-                    LoginService.ListAllPatients();
+                    DatabaseOperationsService.ListAllPatients();
                     break;
                 case "4":
                     System.out.println("Listing all doctors...");
-                    LoginService.ListAllDoctors();
+                    DatabaseOperationsService.ListAllDoctors();
                     break;
                 case "5":
                     System.out.println("View user by ID selected"); //Finish this
                     User.findUserByID();
                     break;
                 case "6":
+                    System.out.println("Delete user by ID selected");
+                    User.removeUserByID();
+                    break;
+                case "7":
                     System.out.println("Exiting program...");
                     return;
                 default:

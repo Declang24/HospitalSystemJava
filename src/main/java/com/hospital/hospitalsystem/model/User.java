@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //Utility Classes
+import com.hospital.hospitalsystem.service.DatabaseOperationsService;
 import com.hospital.hospitalsystem.service.LoginService;
 import com.hospital.hospitalsystem.service.ValidationService;
 
@@ -47,14 +48,25 @@ public class User {
             return;
         }
 
+
         //Enter age
+        int age = 1;
         System.out.print("Enter age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
-        if(!ValidationService.isValidAge(age)){
-            System.out.println("Invalid age.");
-            return;
+        try {
+            age = scanner.nextInt();
+            scanner.nextLine();
+
+            //Valid age check - If these conditions are violated, return error message and send back to menu
+            if(!ValidationService.isValidAge(age)) {
+                System.out.println("Invalid age.");
+                return;
+            }
         }
+        catch (InputMismatchException e) {
+                System.out.println("Invalid age, please enter a numerical value.");
+                return;
+            }
+
 
         //Enter gender
         System.out.print("Enter gender (male/female): ");
@@ -85,11 +97,24 @@ public class User {
         }
         catch (InputMismatchException e)
         {
-            System.out.println("Error: Please insert a numerical value");
+            System.out.println("Error: Please enter a numerical value.");
         }
-        LoginService.listUserByID(idSearch);
+        DatabaseOperationsService.listUserByID(idSearch);
     }
 
+    public static void removeUserByID()
+    {
+        System.out.print("Enter an ID to remove a user: ");
+        try {
+            idSearch = scanner.nextInt();
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Error: Please enter a numerical value.");
+        }
+        DatabaseOperationsService.deleteUserByID(idSearch);
+    }
+
+    //GetID - Specifically for 'Search by ID option' on menu
     public int getID() {
         return id;
     }
