@@ -2,6 +2,9 @@
 
 A simple management system designed to create and manage patients and doctors, using a database set up in MySQL.
 
+<img width="923" height="252" alt="database-image" src="https://github.com/user-attachments/assets/35774d6f-6daf-4891-98d0-2f7e9dee59f2" />
+
+
 ---
 
 # Program Features
@@ -19,3 +22,11 @@ A simple management system designed to create and manage patients and doctors, u
 - **Languages** - Java, SQL
 - **IDE** - IntelliJ IDEA
 - **Database** - MySQL
+- **Build Tool** - Maven
+
+---
+
+# Table SQL Code
+
+>[!IMPORTANT]
+> The sql statement to create the table is found in the project files under "createtable.sql"
