@@ -8,7 +8,7 @@ public class ValidationService {
 
     public static boolean isValidName(String name)
     {
-        String nameRegex = "([a-zA-Z]){2,32}"; //a-z, A-Z, between 2 and 20 chars
+        String nameRegex = "([a-zA-Z]){2,32}"; //a-z, A-Z, between 2 and 32 chars
         Pattern pattern = Pattern.compile(nameRegex);
         Matcher matcher = pattern.matcher(name);
         return matcher.matches(); //Should return true if valid

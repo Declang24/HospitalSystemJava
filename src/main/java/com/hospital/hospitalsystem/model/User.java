@@ -32,13 +32,23 @@ public class User {
     //Add patient - Add patient with NAME, AGE, GENDER, ROLE
     public static void register()
     {
-        //Enter name
-        System.out.print("Enter name: ");
-        String name = scanner.nextLine();
-        if(!ValidationService.isValidName(name)){
-            System.out.println("Invalid name, name must be within 2-32 characters and must not contain numbers.");
+        //Enter first name
+        System.out.print("Enter first name: ");
+        String firstName = scanner.nextLine();
+        if(!ValidationService.isValidName(firstName)){
+            System.out.println("Invalid name, must not contain numbers or spaces.");
             return;
         }
+
+        //Enter last name
+        System.out.print("Enter last name: ");
+        String lastName = scanner.nextLine();
+        if(!ValidationService.isValidName(lastName)) {
+            System.out.println("Invalid name, must not contain numbers or spaces.");
+            return;
+        }
+
+        String name = firstName + " " + lastName;
 
         //Enter email
         System.out.print("Enter email: ");
