@@ -99,31 +99,6 @@ public class User {
         //System.out.println(user.toString());
     }
 
-    public static void findUserByID()
-    {
-        System.out.print("Enter an ID to find a user: ");
-        try {
-            idSearch = scanner.nextInt();
-        }
-        catch (InputMismatchException e)
-        {
-            System.out.println("Error: Please enter a numerical value.");
-        }
-        DatabaseOperationsService.listUserByID(idSearch);
-    }
-
-    public static void removeUserByID()
-    {
-        System.out.print("Enter an ID to remove a user: ");
-        try {
-            idSearch = scanner.nextInt();
-        }
-        catch (InputMismatchException e) {
-            System.out.println("Error: Please enter a numerical value.");
-        }
-        DatabaseOperationsService.deleteUserByID(idSearch);
-    }
-
     //GetID - Specifically for 'Search by ID option' on menu
     public int getID() {
         return id;

@@ -10,6 +10,7 @@ public class HospitalManager {
 
     private static final Scanner kb = new Scanner(System.in);
 
+    //Infinite while loop, exit condition is "7"
     public static void main(String[] args) {
         while(true) {
             System.out.println("\n-- User Management System --\n");
@@ -41,12 +42,12 @@ public class HospitalManager {
                     DatabaseOperationsService.ListAllDoctors();
                     break;
                 case "5":
-                    System.out.println("View user by ID selected"); //Finish this
-                    User.findUserByID();
+                    System.out.println("View user by ID selected");
+                    DatabaseOperationsService.FindUserByID();
                     break;
                 case "6":
                     System.out.println("Delete user by ID selected");
-                    User.removeUserByID();
+                    DatabaseOperationsService.RemoveUserByID();
                     break;
                 case "7":
                     System.out.println("Exiting program...");

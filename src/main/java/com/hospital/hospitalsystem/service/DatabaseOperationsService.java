@@ -1,14 +1,18 @@
 package com.hospital.hospitalsystem.service;
 
 import com.hospital.hospitalsystem.database.dbManager;
-import com.hospital.hospitalsystem.model.User;
 import com.hospital.hospitalsystem.utility.Logger;
 
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class DatabaseOperationsService {
+
+    private static final Scanner scanner = new Scanner(System.in);
+    private static int idSearch; //For Find by user ID
 
     public static void ListAllUsers()
     {
@@ -97,7 +101,7 @@ public class DatabaseOperationsService {
         }
     }
 
-    public static void listUserByID(int idSearch)
+    public static void ListUserByID(int idSearch)
     {
         String sql = "SELECT * FROM users WHERE id = ?";
 
@@ -134,7 +138,7 @@ public class DatabaseOperationsService {
         Logger.log("User " + idSearch + " was retrieved from the database");
     }
 
-    public static void deleteUserByID(int idSearch)
+    public static void DeleteUserByID(int idSearch)
     {
         String sql = "DELETE FROM users WHERE id = ?";
 
@@ -156,6 +160,31 @@ public class DatabaseOperationsService {
         }
 
         Logger.log("User " + idSearch + " was removed from the database");
+    }
+
+    public static void FindUserByID()
+    {
+        System.out.print("Enter an ID to find a user: ");
+        try {
+            idSearch = scanner.nextInt();
+        }
+        catch (InputMismatchException e)
+        {
+            System.out.println("Error: Please enter a numerical value.");
+        }
+        ListUserByID(idSearch);
+    }
+
+    public static void RemoveUserByID()
+    {
+        System.out.print("Enter an ID to remove a user: ");
+        try {
+            idSearch = scanner.nextInt();
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Error: Please enter a numerical value.");
+        }
+        DatabaseOperationsService.DeleteUserByID(idSearch);
     }
 
 }
