@@ -2,7 +2,7 @@
 
 A simple management system designed to create and manage patients and doctors, using a database set up in MySQL.
 
-<img width="940" height="283" alt="Screenshot 2026-06-27 182038" src="https://github.com/user-attachments/assets/b642f174-bc48-4177-9c5d-d147e58a7156" />
+![image](readme_images/hospitalSystemNames.png)
 
 ---
 

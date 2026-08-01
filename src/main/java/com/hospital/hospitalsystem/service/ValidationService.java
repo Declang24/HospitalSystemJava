@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValidationService {
-    static int maxAge = 130;
+    static final int maxAge = 130; //Should only be edited in this class, not by program
 
     public static boolean isValidName(String name)
     {
@@ -24,7 +24,7 @@ public class ValidationService {
 
     public static boolean isValidAge(int age)
     {
-        return age > 0 && age < maxAge;
+        return age > 0 && age <= maxAge;
     }
 
     public static boolean isValidGender(String gender)
@@ -37,5 +37,11 @@ public class ValidationService {
     {
         role = role.toLowerCase();
         return role.equals("patient") || role.equals("doctor");
+    }
+
+    //Getter methods
+
+    public static int getMaxAge() {
+        return maxAge;
     }
 }
